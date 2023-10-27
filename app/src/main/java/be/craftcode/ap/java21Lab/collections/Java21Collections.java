@@ -47,7 +47,7 @@ public class Java21Collections {
         Your mission is to implement the below methods using these new methods. 
         To check if you succeeded, paste the following command into the terminal: 
         
-            gradlew test --tests "Java21CollectionsTest"
+            gradle test --tests "Java21CollectionsTest"
 
         Good luck!
     */
