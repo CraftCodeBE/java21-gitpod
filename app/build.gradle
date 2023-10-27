@@ -11,6 +11,11 @@ plugins {
     id 'application'
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
@@ -26,7 +31,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'be.craftcode.ap.App'
+    mainClass = 'be.craftcode.ap.java21Lab.App'
 }
 
 tasks.named('test') {

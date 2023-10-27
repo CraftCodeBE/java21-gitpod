@@ -7,8 +7,9 @@ public class App {
     public String getGreeting() {
         return "Hello World!";
     }
+    //private static final Java21Collections collect = new Java21Collections();
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+
     }
 }
