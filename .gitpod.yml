@@ -1,4 +1,4 @@
-# Image of workspace. Learn more: https://www.gitpod.io/docs/configure/workspaces/workspace-image
+
 image: gitpod/workspace-full
 
 # List the start up tasks. Learn more: https://www.gitpod.io/docs/configure/workspaces/tasks
@@ -16,3 +16,6 @@ ports:
     onOpen: open-preview
 
 # Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
+vscode:
+  extensions:
+    - vscjava.vscode-java-test

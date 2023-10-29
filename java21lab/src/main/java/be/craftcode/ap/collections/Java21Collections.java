@@ -44,8 +44,14 @@ public class Java21Collections {
         Open the Sequence-Diagram.png in this folder. Now ordered collections (i.e SortedSet, List, Deque) 
         extend the SequencedCollection interface, and therefore have access to the above methods.
 
-        Your mission is to implement the below methods using these new methods. 
-        Run the tests to check if you succeeded.
+        Your mission is to implement the below methods using these new SequencedCollection methods. 
+
+        To check if you succeeded, run the tests by entering the following command in the terminal:
+
+            mvn test -Dtest="Java21CollectionsTest"
+
+        or simply open java21lab/test/java/be/craftcode/ap/collections/Java21CollectionsTest.java 
+            and click on the green arrow to the left of the class name.
 
         Good luck!
     */
