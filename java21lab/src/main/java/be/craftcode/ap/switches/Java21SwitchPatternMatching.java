@@ -26,13 +26,13 @@ public class Java21SwitchPatternMatching {
      *
      * // Prior to Java 16 you had to check the type, then explicitly cast it:
      * if (obj instanceof String) {
-     * String s = (String)obj;
-     * ... use s ...
+     *     String s = (String)obj;
+     *     ... use s ...
      * }
      * 
      * // As of Java 16 you can use pattern matching:
      * if (obj instanceof String s) {
-     * ... use s ...
+     *     ... use s ...
      * }
      * 
      * //But, if you had a lot of possible types, you still ended up with a long
@@ -40,17 +40,17 @@ public class Java21SwitchPatternMatching {
      * 
      * // Prior to Java 21
      * static String formatter(Object obj) {
-     * String formatted = "unknown";
-     * if (obj instanceof Integer i) {
-     * formatted = String.format("int %d", i);
-     * } else if (obj instanceof Long l) {
-     * formatted = String.format("long %d", l);
-     * } else if (obj instanceof Double d) {
-     * formatted = String.format("double %f", d);
-     * } else if (obj instanceof String s) {
-     * formatted = String.format("String %s", s);
-     * }
-     * return formatted;
+     *     String formatted = "unknown";
+     *     if (obj instanceof Integer i) {
+     *         formatted = String.format("int %d", i);
+     *     } else if (obj instanceof Long l) {
+     *         formatted = String.format("long %d", l);
+     *     } else if (obj instanceof Double d) {
+     *         formatted = String.format("double %f", d);
+     *     } else if (obj instanceof String s) {
+     *         formatted = String.format("String %s", s);
+     *     }
+     *     return formatted;
      * }
      * 
      * When you have a long chain of "else-if"s evaluating the same object,
@@ -80,13 +80,13 @@ public class Java21SwitchPatternMatching {
      * 
      * // As of Java 21
      * static String formatterPatternSwitch(Object obj) {
-     * return switch (obj) {
-     * case Integer i -> String.format("int %d", i);
-     * case Long l -> String.format("long %d", l);
-     * case Double d -> String.format("double %f", d);
-     * case String s -> String.format("String %s", s);
-     * default -> obj.toString();
-     * };
+     *     return switch (obj) {
+     *         case Integer i -> String.format("int %d", i);
+     *         case Long l -> String.format("long %d", l);
+     *         case Double d -> String.format("double %f", d);
+     *         case String s -> String.format("String %s", s);
+     *         default -> obj.toString();
+     *     };
      * }
      * 
      * NULL HANDLING
@@ -97,14 +97,14 @@ public class Java21SwitchPatternMatching {
      * 
      * // Prior to Java 21
      * static void testFooBarOld(String s) {
-     * if (s == null) {
-     * System.out.println("Oops!");
-     * return;
-     * }
-     * switch (s) {
-     * case "Foo", "Bar" -> System.out.println("Great");
-     * default -> System.out.println("Ok");
-     * }
+     *     if (s == null) {
+     *         System.out.println("Oops!");
+     *         return;
+     *     }
+     *     switch (s) {
+     *         case "Foo", "Bar" -> System.out.println("Great");
+     *         default -> System.out.println("Ok");
+     *     }
      * }
      * 
      * This made sense when you could only use primitives and their boxed types,
@@ -116,19 +116,19 @@ public class Java21SwitchPatternMatching {
      * 
      * // As of Java 21
      * static void testFooBarNew(String s) {
-     * switch (s) {
-     * case null -> System.out.println("Oops");
-     * case "Foo", "Bar" -> System.out.println("Great");
-     * default -> System.out.println("Ok");
-     * }
+     *     switch (s) {
+     *         case null -> System.out.println("Oops");
+     *         case "Foo", "Bar" -> System.out.println("Great");
+     *         default -> System.out.println("Ok");
+     *     }
      * }
      * 
      * You can even combine null and default to the same case label:
      * 
      * switch (obj) {
-     * ...
-     * case null, default ->
-     * System.out.println("The rest (including null)");
+     *     ...
+     *     case null, default ->
+     *     System.out.println("The rest (including null)");
      * }
      * 
      * 
@@ -143,17 +143,17 @@ public class Java21SwitchPatternMatching {
      * 
      * // Before Java 21
      * static void testStringOld(String response) {
-     * switch (response) {
-     * case null -> { }
-     * case String s -> {
-     * if (s.equalsIgnoreCase("YES"))
-     * System.out.println("You got it");
-     * else if (s.equalsIgnoreCase("NO"))
-     * System.out.println("Shame");
-     * else
-     * System.out.println("Sorry?");
-     * }
-     * }
+     *     switch (response) {
+     *         case null -> { }
+     *         case String s -> {
+     *             if (s.equalsIgnoreCase("YES"))
+     *                 System.out.println("You got it");
+     *             else if (s.equalsIgnoreCase("NO"))
+     *                 System.out.println("Shame");
+     *             else
+     *                 System.out.println("Sorry?");
+     *         }
+     *     }
      * }
      * 
      * Solution:
@@ -163,46 +163,46 @@ public class Java21SwitchPatternMatching {
      * 
      * // As of Java 21
      * static void testStringNew(String response) {
-     * switch (response) {
-     * case null -> { }
-     * case String s
-     * when s.equalsIgnoreCase("YES") -> {
-     * System.out.println("You got it");
-     * }
-     * case String s
-     * when s.equalsIgnoreCase("NO") -> {
-     * System.out.println("Shame");
-     * }
-     * case String s -> {
-     * System.out.println("Sorry?");
-     * }
-     * }
+     *     switch (response) {
+     *         case null -> { }
+     *         case String s
+     *             when s.equalsIgnoreCase("YES") -> {
+     *                 System.out.println("You got it");
+     *             }
+     *         case String s
+     *             when s.equalsIgnoreCase("NO") -> {
+     *                 System.out.println("Shame");
+     *         }
+     *         case String s -> {
+     *             System.out.println("Sorry?");
+     *         }
+     *     }
      * }
      * 
      * When you add constants, a new switch structure begins to appear:
      * 
      * // As of Java 21
      * static void testStringEnhanced(String response) {
-     * switch (response) {
-     * case null -> { }
-     * case "y", "Y" -> {
-     * System.out.println("You got it");
-     * }
-     * case "n", "N" -> {
-     * System.out.println("Shame");
-     * }
-     * case String s
-     * when s.equalsIgnoreCase("YES") -> {
-     * System.out.println("You got it");
-     * }
-     * case String s
-     * when s.equalsIgnoreCase("NO") -> {
-     * System.out.println("Shame");
-     * }
-     * case String s -> {
-     * System.out.println("Sorry?");
-     * }
-     * }
+     *     switch (response) {
+     *         case null -> { }
+     *         case "y", "Y" -> {
+     *             System.out.println("You got it");
+     *         }
+     *         case "n", "N" -> {
+     *             System.out.println("Shame");
+     *         }
+     *         case String s
+     *             when s.equalsIgnoreCase("YES") -> {
+     *                 System.out.println("You got it");
+     *         }
+     *         case String s
+     *             when s.equalsIgnoreCase("NO") -> {
+     *                 System.out.println("Shame");
+     *         }
+     *         case String s -> {
+     *             System.out.println("Sorry?");
+     *         }
+     *     }
      * }
      * 
      * DOMINANCE
@@ -247,23 +247,23 @@ public class Java21SwitchPatternMatching {
      * final class Tarot implements CardClassification {}
      * 
      * static void exhaustiveSwitchWithoutEnumSupport(CardClassification c) {
-     * switch (c) {
-     * case Suit s when s == Suit.CLUBS -> {
-     * System.out.println("It's clubs");
-     * }
-     * case Suit s when s == Suit.DIAMONDS -> {
-     * System.out.println("It's diamonds");
-     * }
-     * case Suit s when s == Suit.HEARTS -> {
-     * System.out.println("It's hearts");
-     * }
-     * case Suit s -> {
-     * System.out.println("It's spades");
-     * }
-     * case Tarot t -> {
-     * System.out.println("It's a tarot");
-     * }
-     * }
+     *     switch (c) {
+     *         case Suit s when s == Suit.CLUBS -> {
+     *             System.out.println("It's clubs");
+     *         }
+     *         case Suit s when s == Suit.DIAMONDS -> {
+     *             System.out.println("It's diamonds");
+     *         }
+     *         case Suit s when s == Suit.HEARTS -> {
+     *             System.out.println("It's hearts");
+     *         }
+     *         case Suit s -> {
+     *             System.out.println("It's spades");
+     *         }
+     *         case Tarot t -> {
+     *             System.out.println("It's a tarot");
+     *         }
+     *     }
      * }
      * 
      * Solution:
@@ -279,23 +279,23 @@ public class Java21SwitchPatternMatching {
      * 
      * 
      * static void exhaustiveSwitchWithBetterEnumSupport(CardClassification c) {
-     * switch (c) {
-     * case Suit.CLUBS -> {
-     * System.out.println("It's clubs");
-     * }
-     * case Suit.DIAMONDS -> {
-     * System.out.println("It's diamonds");
-     * }
-     * case Suit.HEARTS -> {
-     * System.out.println("It's hearts");
-     * }
-     * case Suit.SPADES -> {
-     * System.out.println("It's spades");
-     * }
-     * case Tarot t -> {
-     * System.out.println("It's a tarot");
-     * }
-     * }
+     *     switch (c) {
+     *         case Suit.CLUBS -> {
+     *             System.out.println("It's clubs");
+     *         }
+     *         case Suit.DIAMONDS -> {
+     *             System.out.println("It's diamonds");
+     *         }
+     *         case Suit.HEARTS -> {
+     *             System.out.println("It's hearts");
+     *         }
+     *         case Suit.SPADES -> {
+     *             System.out.println("It's spades");
+     *         }
+     *         case Tarot t -> {
+     *             System.out.println("It's a tarot");
+     *         }
+     *     }
      * }
      * 
      * 
@@ -308,10 +308,10 @@ public class Java21SwitchPatternMatching {
      * 
      * // As of Java 21
      * static int coverage(Object obj) {
-     * return switch (obj) { // Error - not exhaustive
-     * case String s -> s.length();
-     * case Integer i -> i;
-     * };
+     *     return switch (obj) { // Error - not exhaustive
+     *         case String s -> s.length();
+     *         case Integer i -> i;
+     *     };
      * }
      * 
      * An Object selector in a switch expression still needs all of its
@@ -320,11 +320,11 @@ public class Java21SwitchPatternMatching {
      * 
      * // As of Java 21
      * static int coverage(Object obj) {
-     * return switch (obj) {
-     * case String s -> s.length();
-     * case Integer i -> i;
-     * default -> 0;
-     * };
+     *     return switch (obj) {
+     *         case String s -> s.length();
+     *         case Integer i -> i;
+     *         default -> 0;
+     *     };
      * }
      * 
      * 
@@ -370,7 +370,7 @@ public class Java21SwitchPatternMatching {
         // Example: case Integer i when i>3 -> "something";
         return "fail";
     }
-    
+
     // TODO3: Uncomment the method below. What's wrong with it? Can you fix it?
 
     /*
