@@ -238,7 +238,7 @@ public class Java21SwitchPatternMatching {
      * 
      * Problem:
      * Now that we can use pattern labels, this old style results in unnecessarily
-     * verbose code when enums are one of the possibilities involved:
+     * verbose code when enums are part of the possibilities involved:
      * 
      * // As of Java 21
      * sealed interface CardClassification permits Suit, Tarot {}
@@ -355,33 +355,83 @@ public class Java21SwitchPatternMatching {
         return switch (response) {
             case null -> "null";
             case String s -> {
-                if (s.equalsIgnoreCase("YES") || s.equalsIgnoreCase("Y")){
+                if (s.equalsIgnoreCase("YES") || s.equalsIgnoreCase("Y")) {
                     yield "You got it";
-                }
-                else if (s.equalsIgnoreCase("NO")|| s.equalsIgnoreCase("N")){
+                } else if (s.equalsIgnoreCase("NO") || s.equalsIgnoreCase("N")) {
                     yield "Shame";
-                }
-                else
+                } else
                     yield "Sorry?";
             }
         };
     }
 
-    public String testStringWithGuards(String input){
+    public String testStringWithGuards(String input) {
         // TODO2: rewrite the above method using Switch Pattern Matching Guards.
         // Example: case Integer i when i>3 -> "something";
         return "fail";
     }
+    
+    // TODO3: Uncomment the method below. What's wrong with it? Can you fix it?
 
-    public String testDominance(String input){
-        //TODO3: what's wrong with this method? Can you fix it?
-        return switch(input){
+    /*
+
+    public String testDominance(String input) {
+        return switch (input) {
             case String s -> "It's a string: " + s;
             case "y" -> "It's the letter 'y'!";
             default -> "none";
         };
     }
-
     
+    */
+    
+
+    sealed interface GameSystem permits PlayStation, Xbox, Nintendo, PC {
+    }
+
+    public enum PC implements GameSystem {
+        RTX3060, RX580, RTX4090, RX7900
+    }
+
+    final class Xbox implements GameSystem {
+    }
+
+    final class PlayStation implements GameSystem {
+    }
+
+    public enum Nintendo implements GameSystem {
+        SWITCH, WII, GAMECUBE, N64
+    }
+
+    public String oldEnumSupport(GameSystem gs) {
+        String result = "This is a: ";
+        if (gs instanceof PC pc) {
+            switch (pc) {
+                case RTX3060 -> result += "RTX3060";
+                case RTX4090 -> result += "RTX4090";
+                case RX580 -> result += "RX580";
+                case RX7900 -> result += "RX7900";
+            }
+        } else if (gs instanceof Nintendo nintendo) {
+            switch (nintendo) {
+                case SWITCH -> result += "SWITCH";
+                case WII -> result += "WII";
+                case GAMECUBE -> result += "GAMECUBE";
+                case N64 -> result += "N64";
+            }
+        } else if (gs instanceof Xbox) {
+            result += "Xbox";
+        } else {
+            result += "PlayStation";
+        }
+
+        return result;
+    }
+
+    public String betterEnumSupport(GameSystem gs) {
+        // TODO4: Reimplement the previous method with a single switch expression that
+        // uses the new enum qualified name support
+        return "fail";
+    }
 
 }
