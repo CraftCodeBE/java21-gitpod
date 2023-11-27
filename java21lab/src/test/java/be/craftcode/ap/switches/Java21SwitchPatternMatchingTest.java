@@ -81,11 +81,11 @@ public class Java21SwitchPatternMatchingTest {
         assertEquals("This is a: N64", java21SwitchPatternMatching.oldEnumSupport(Nintendo.N64));
 
         // Test for Xbox
-        Xbox x = java21SwitchPatternMatching.new Xbox();
+        Xbox x = new Xbox();
         assertEquals("This is a: Xbox", java21SwitchPatternMatching.oldEnumSupport(x));
 
         // Test for PlayStation
-        PlayStation ps = java21SwitchPatternMatching.new PlayStation();
+        PlayStation ps = new PlayStation();
         assertEquals("This is a: PlayStation", java21SwitchPatternMatching.oldEnumSupport(ps));
     }
 
@@ -104,11 +104,11 @@ public class Java21SwitchPatternMatchingTest {
         assertEquals("This is a: N64", java21SwitchPatternMatching.betterEnumSupport(Nintendo.N64));
 
         // Test for Xbox
-        Xbox x = java21SwitchPatternMatching.new Xbox();
+        Xbox x = new Xbox();
         assertEquals("This is a: Xbox", java21SwitchPatternMatching.betterEnumSupport(x));
 
         // Test for PlayStation
-        PlayStation ps = java21SwitchPatternMatching.new PlayStation();
+        PlayStation ps = new PlayStation();
         assertEquals("This is a: PlayStation", java21SwitchPatternMatching.betterEnumSupport(ps));
     }
 

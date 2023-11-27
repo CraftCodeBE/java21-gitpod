@@ -331,7 +331,7 @@ public class Java21SwitchPatternMatching {
      */
 
     public String oldCheckObject(Object o) {
-        String formatted = null;
+        String formatted;
         if (o instanceof Integer i) {
             formatted = String.format("int %d", i);
         } else if (o instanceof Long l) {
@@ -393,10 +393,10 @@ public class Java21SwitchPatternMatching {
         RTX3060, RX580, RTX4090, RX7900
     }
 
-    final class Xbox implements GameSystem {
+    static final class Xbox implements GameSystem {
     }
 
-    final class PlayStation implements GameSystem {
+    static final class PlayStation implements GameSystem {
     }
 
     public enum Nintendo implements GameSystem {
@@ -404,32 +404,33 @@ public class Java21SwitchPatternMatching {
     }
 
     public String oldEnumSupport(GameSystem gs) {
-        String result = "This is a: ";
-        if (gs instanceof PC pc) {
-            switch (pc) {
-                case RTX3060 -> result += "RTX3060";
-                case RTX4090 -> result += "RTX4090";
-                case RX580 -> result += "RX580";
-                case RX7900 -> result += "RX7900";
+        String result = "";
+        switch (gs) {
+            case PC pc -> {
+                switch (pc) {
+                    case RTX3060 -> result = "This is a: RTX3060";
+                    case RTX4090 -> result = "This is a: RTX4090";
+                    case RX580 -> result = "This is a: RX580";
+                    case RX7900 -> result = "This is a: RX7900";
+                }
             }
-        } else if (gs instanceof Nintendo nintendo) {
-            switch (nintendo) {
-                case SWITCH -> result += "SWITCH";
-                case WII -> result += "WII";
-                case GAMECUBE -> result += "GAMECUBE";
-                case N64 -> result += "N64";
+            case Nintendo nintendo -> {
+                switch (nintendo) {
+                    case SWITCH -> result = "This is a: SWITCH";
+                    case WII -> result = "This is a: WII";
+                    case GAMECUBE -> result = "This is a: GAMECUBE";
+                    case N64 -> result = "This is a: N64";
+                }
             }
-        } else if (gs instanceof Xbox) {
-            result += "Xbox";
-        } else {
-            result += "PlayStation";
+            case Xbox x-> result = "This is a: Xbox";
+            case null, default -> result = "This is a: PlayStation";
         }
 
         return result;
     }
 
     public String betterEnumSupport(GameSystem gs) {
-        // TODO4: Reimplement the previous method with a single switch expression that
+        // TODO4: Replace that mess above with a single exhaustive switch expression that 
         // uses the new enum qualified name support
         return "fail";
     }
