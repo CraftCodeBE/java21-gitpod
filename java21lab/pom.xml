@@ -44,7 +44,24 @@
                     <compilerArgs>
                         <arg>--enable-preview</arg>
                     </compilerArgs>
+                    <excludes>
+                        <exclude>be/craftcode/ap/strings/Java21StringTemplatesPreview.java</exclude>
+                    </excludes>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>default-testCompile</id>
+                        <phase>test-compile</phase>
+                        <configuration>
+                            <testExcludes>
+                                <exclude>**/Java21StringTemplatesPreviewTest.java</exclude>
+                            </testExcludes>
+                        </configuration> 
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>                  
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

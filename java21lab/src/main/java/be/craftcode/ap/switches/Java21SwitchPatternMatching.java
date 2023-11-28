@@ -1,17 +1,5 @@
 package be.craftcode.ap.switches;
 
-import java.util.List;
-
-record Award(String name, String category, int year) {
-    /* no body needed! */
-}
-
-record Author(String firstName, String lastName, int age, List<Award> awards) {
-}
-
-record Book(String title, int pages, double price, Author author) {
-}
-
 public class Java21SwitchPatternMatching {
     /*
      * 
@@ -386,17 +374,17 @@ public class Java21SwitchPatternMatching {
     */
     
 
-    sealed interface GameSystem permits PlayStation, Xbox, Nintendo, PC {
+    sealed public interface GameSystem permits PlayStation, Xbox, Nintendo, PC {
     }
 
     public enum PC implements GameSystem {
         RTX3060, RX580, RTX4090, RX7900
     }
 
-    static final class Xbox implements GameSystem {
+    public static final class Xbox implements GameSystem {
     }
 
-    static final class PlayStation implements GameSystem {
+    public static final class PlayStation implements GameSystem {
     }
 
     public enum Nintendo implements GameSystem {
@@ -434,5 +422,4 @@ public class Java21SwitchPatternMatching {
         // uses the new enum qualified name support
         return "fail";
     }
-
 }

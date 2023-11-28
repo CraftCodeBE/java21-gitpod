@@ -14,7 +14,7 @@ record Book(String title, int pages, double price, Author author) {
 }
 
 public class Java21RecordPatterns {
-    /**
+    /*
      * Records are immutable data containers which come with common functions
      * built-in: field accessors, equals(), hashCode(), and toString().
      * (see above for examples)
