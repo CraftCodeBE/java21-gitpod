@@ -18,4 +18,4 @@ ports:
 # Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
 vscode:
   extensions:
-    - https://files.catbox.moe/ndv2c4.vsix
+    - redhat.java
