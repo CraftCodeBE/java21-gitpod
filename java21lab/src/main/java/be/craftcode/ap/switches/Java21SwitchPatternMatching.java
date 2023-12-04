@@ -335,7 +335,7 @@ public class Java21SwitchPatternMatching {
     }
 
     public String checkObject(Object obj) {
-        // TODO1: rewrite the above method using Switch Pattern Matching
+        // TODO 1: rewrite the above method using Switch Pattern Matching
         return "fail";
     }
 
@@ -354,12 +354,12 @@ public class Java21SwitchPatternMatching {
     }
 
     public String testStringWithGuards(String input) {
-        // TODO2: rewrite the above method using Switch Pattern Matching Guards.
+        // TODO 2: rewrite the above method using Switch Pattern Matching Guards.
         // Example: case Integer i when i>3 -> "something";
         return "fail";
     }
 
-    // TODO3: Uncomment the method below. What's wrong with it? Can you fix it?
+    // TODO 3: Uncomment the method below. What's wrong with it? Can you fix it?
 
     /*
 
@@ -418,7 +418,7 @@ public class Java21SwitchPatternMatching {
     }
 
     public String betterEnumSupport(GameSystem gs) {
-        // TODO4: Replace that mess above with a single exhaustive switch expression that 
+        // TODO 4: Replace that mess above with a single exhaustive switch expression that 
         // uses the new enum qualified name support
         return "fail";
     }
